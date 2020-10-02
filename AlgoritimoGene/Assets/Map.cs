@@ -3,10 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Algoritimo_G : MonoBehaviour
+public class Map : MonoBehaviour
 {
-    static readonly int[,] m_grid = new int[,]
+
+    public GameObject _wall;
+    public GameObject _exit;
+    public GameObject _start;
+    public GameObject _path;
+    public Vector2 startPosition;
+    public Vector2 endPosition;
+
+
+    public List<GameObject> pathTiles;
+
+    public GA _Generic_Algorithm;
+
+    public GameObject MazeTiles(int tile)
     {
+
+        if (tile == 1) return _wall;
+        if (tile == 8) return _start;
+        if (tile == 9) return _exit;
+        return null;
+
+
+    }
+
+
+
+
+    // startPosition = new Vector2(14f, 7f);
+    //endPosition = new Vector2(0f, 2f);
+    //fittestDirections = new List<int>();
+    // pathTiles = new List<GameObject>();
+
+    //geneticAlgorithm = new AG();
+    // geneticAlgorithm.Map = this;
+    //   geneticAlgorithm.Run();
+
+
+
+
+    public void Start()
+    {
+      
+
+        
+    }
+    public int[,] m_grid = new int[,]
+        {
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
         {1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,9 },
         {1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1 },
@@ -14,49 +59,66 @@ public class Algoritimo_G : MonoBehaviour
         {1,0,0,1,1,0,1,1,1,0,0,1,1,1,0,1 },
         {1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1 },
         {8,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1 },
-        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
-    };
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }};
+        
 
-    public int[,] Grid {get => m_grid;}
 
-    public struct Genome
+
+
+
+
+
+
+
+// public int[,] Grid {get => m_grid;}
+
+
+/* public double TestRoute(List<int> directions)
+ {
+     Vector2 position = startPosition;
+
+     for (int directionIndex = 0; directionIndex < directions.Count; directionIndex++)
+     {
+         int nextDirection = directions[directionIndex];
+         position = Move(position, nextDirection);
+     }
+
+     Vector2 deltaPosition = new Vector2(
+         Math.Abs(position.x - endPosition.x),
+         Math.Abs(position.y - endPosition.y));
+     double result = 1 / (double)(deltaPosition.x + deltaPosition.y + 1);
+     if (result == 1)
+         Debug.Log("TestRoute result=" + result + ",(" + position.x + "," + position.y + ")");
+     return result;
+ }*/
+
+/*public void ClearPathTiles()
+{
+
+    foreach (GameObject pathTile in pathTiles)
     {
-        bool[] m_Bits;
-        public bool[] Bits;
+        Destroy(pathTile);
 
-        double m_Fitness;
-        public double Fitness;
+    }
+    pathTiles.Clear();
 
-        public int Size { get => m_Bits.Lenght;}
-
-        public Genome(int Size)
-            {
-            Random random = new Random((int)DateTime.UtcNow.Ticks);
-
-            m_Bits = new bool[Size];
-            for (int i = 0; i < Size; i++) 
-            {
-                m_Bits[i] = random.NextDouble() < 0.5;
-            }
-
-            m_Fitness = 0.0;
-
-
-            }
 }
 
 
+public void RenderPath()
+{
+    ClearPathTiles();
 
 
-
-    
-
-
-    // Start is called before the first frame update
+}
+*/
 
 
-    // Update is called once per frame
-    void Update()
+// Start is called before the first frame update
+
+
+// Update is called once per frame
+void Update()
     {
         
     }

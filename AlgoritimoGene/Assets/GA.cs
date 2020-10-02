@@ -7,8 +7,50 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
+
 public class GA 
 {
+
+    public struct Genome
+    {
+        bool[] m_Bits;
+        public bool[] Bits
+        {
+            get => m_Bits;
+            set => m_Bits = value;
+        }
+
+        double m_Fitness;
+        public double Fitness
+        {
+            get => m_Fitness;
+            set => m_Fitness = value;
+        }
+
+        public int Size { get => m_Bits.Length; }
+
+        public Genome(int Size)
+        {
+            System.Random random = new System.Random((int)DateTime.UtcNow.Ticks);
+
+            m_Bits = new bool[Size];
+            for (int i = 0; i < Size; i++)
+            {
+                m_Bits[i] = random.NextDouble() < 0.5;
+            }
+
+            m_Fitness = 0.0;
+
+
+        }
+    }
+
+
+
+
+
+
+
     Genome[] m_Genomes;
 
   
@@ -24,21 +66,25 @@ public class GA
     double m_BestFitnessScore;
     double m_TotalFitnessScore;
 
+    int m_FittestGenome;
     public int FittestGenome { get => m_FittestGenome; }
 
+    int m_Generation;
     public int Generation { get => m_Generation; }
 
+    Map m_Brain;
     public Map Brain { get => m_Brain; }
 
+    bool m_IsRunning;
     public bool IsRunning { get => m_IsRunning; }
 
-    Random m_Random;
+    System.Random m_Random;
 
 
     public GA(double crossoverRate, double mutationRate, int populationSize, int chromossomoLenght, int geneLenght) 
     {
 
-        m_Random = new Random((int)DateTime.UtcNow.Ticks);
+        m_Random = new System.Random((int)DateTime.UtcNow.Ticks);
 
         m_Brain = new Map();
 
@@ -91,11 +137,11 @@ public class GA
         {
             Directions = Decode(m_Genomes[i].Bits);
 
-            m_Genomes[i].Fitness = m_Brain.TestRoute(Directions, TempMemory);
+            //m_Genomes[i].Fitness = m_Brain.TestRoute(Directions, TempMemory);
 
             m_TotalFitnessScore = i;
 
-            m_Brain.CopyMemoryfrom(TempMemory);
+          //  m_Brain.CopyMemoryfrom(TempMemory);
 
 
         }
@@ -103,6 +149,43 @@ public class GA
 
     }
 
+    
+
+    private int[] Decode(bool[] bits) 
+    {
+        List<int> directions = new List<int>();
+        bool[] gene = new bool[_GeneLenght];
+
+        for (int currentGene = 0; currentGene < bits.Length; currentGene += _GeneLenght) 
+        {
+            for (int bit = 0; bit < _GeneLenght; ++bit) 
+            {
+                gene[bit] = bits[currentGene + bit];
+            }
+
+            directions.Add(BinToInt(gene));
+
+
+        }
+
+        return directions.ToArray();
+    }
+
+    private int BinToInt(bool[] bits) 
+    {
+        int value = 0;
+        int multiplier = 1;
+
+        for (int i = bits.Length; i >0; --i) 
+        {
+            value += bits[i - 1] ? multiplier : 0;
+            multiplier *= 2;
+
+
+        }
+
+        return value;
+    }
 
     private Genome Roullete()
     {
@@ -195,7 +278,7 @@ public class GA
 
             Genome child1 = new Genome(parent1.Size);
             Genome child2 = new Genome(parent1.Size);
-            Crossover(parent1.Bits, parent2.Bits, child1, Bits, child1.Bits);
+            Crossover(parent1.Bits, parent2.Bits, child1.Bits, child1.Bits);
 
             Mutate(child1.Bits);
             Mutate(child2.Bits);
@@ -214,7 +297,7 @@ public class GA
 
         }
 
-        ++m_Geberation;
+        ++m_Generation;
     }
 
 

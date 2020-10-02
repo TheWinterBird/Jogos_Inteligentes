@@ -313,6 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641502023}
   - component: {fileID: 1641502024}
+  - component: {fileID: 1641502025}
   m_Layer: 0
   m_Name: maze
   m_TagString: Untagged
@@ -328,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641502022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -11.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -346,16 +347,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bd68a7277a948c3aa1753daf06345a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1641502025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641502022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092a7558f8583984f9890a99e1d984e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wall: {fileID: 732440408839925785, guid: a3f07830abd70d4499695610f7d24e29, type: 3}
+  _exit: {fileID: 4797947264160019767, guid: 3fca3c48a672b2c42b1c012fa523d62c, type: 3}
+  _start: {fileID: 7766057948753547497, guid: a0ae0784e4d175e4e8773b7a7a37cc4d, type: 3}
+  _path: {fileID: 4861414780017254895, guid: e4cd4f71f9426e04083c4bdc7acf6c3d, type: 3}
   startPosition: {x: 0, y: 0}
   endPosition: {x: 0, y: 0}
-  wallPrefab: {fileID: 1500760633866704, guid: 79e74ed4f9b4b49c188fd5a5fe0eb347, type: 2}
-  exitPrefab: {fileID: 1037494097510068, guid: e58ea0110ef4d43d08d694d5a60d75c6, type: 2}
-  startPrefab: {fileID: 1326930612111774, guid: be75a82a3d2e84d72829af014c5079c3,
-    type: 2}
-  pathPrefab: {fileID: 1660987998029466, guid: 8598842c9cb9243538e56dc660e66b9d, type: 2}
-  fittestDirections: 
   pathTiles: []
-  text: {fileID: 950366332}
 --- !u!1 &1827249565
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827249565}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 8, y: 11, z: -4}
+  m_LocalPosition: {x: 8, y: 12.77, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
